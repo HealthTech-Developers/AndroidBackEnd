@@ -31,22 +31,28 @@ public class Register extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		
-		
-		
+
+
+
 
 		response.setContentType("application/json");
 		System.out.println("connection ok");
-		response.getWriter().print("successful");
 		String username = request.getParameter("username");
+		System.out.println(username);
 		String passKey =  request.getParameter("password");
-		
+		System.out.println(passKey);
+
 		// 
 		String userType=  request.getParameter("userType");
-		String firstName = request.getParameter("firstName");
-		String nationID = request.getParameter("id");
+		System.out.println(userType);
 
-        // instance of the user
+		String firstName = request.getParameter("name");
+		System.out.println(firstName);
+
+		String nationID = request.getParameter("nationalId"); 
+		System.out.println(nationID);
+
+		// instance of the user
 		User user;
 		boolean feedBack;
 		JSONObject json = new JSONObject();
@@ -59,7 +65,8 @@ public class Register extends HttpServlet {
 			// setting information
 			user.setFirstName(firstName);
 			user.setNationalID(nationID);
-			
+			System.out.println("registering...");
+
 			// to the User
 			user.setUsername(username);
 			user.setPassword(passKey);
@@ -86,11 +93,11 @@ public class Register extends HttpServlet {
 			user.setUserType(userType);
 			user.setUsername(username);
 			user.setPassword(passKey);
-			
+
 			// setting a profession
 			Doctor doctor = (Doctor) user;
-			       doctor.setProffession(username);
-			
+			doctor.setProffession(username);
+
 			// registering
 			feedBack= doctor.register();
 			try {

@@ -17,11 +17,11 @@ public class Consultation implements PatientRecord {
 	}
 
 	@Override
-	public void insertrecord( String patientId) {
+	public void insertrecord( String patientId,String doctorId) {
 		// new connection
 		DatabaseConnection db = new DatabaseConnection();
 		// insert the buffer of consultation to the specified Patient id
-		db.insertrecord(buff,patientId);		
+		db.insertConsultation(buff,patientId,doctorId);		
 	}
 
 	@Override
