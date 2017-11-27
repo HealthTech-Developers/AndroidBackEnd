@@ -1,13 +1,33 @@
 package model;
 
+import org.json.JSONObject;
+
 import database.DatabaseConnection;
 
 public class Consultation implements PatientRecord {
 
 	private StringBuffer buff;
+	private String doctorId;
+	private String patientId;
 	
 	
 	
+	public String getDoctorId() {
+		return doctorId;
+	}
+
+	public void setDoctorId(String doctorId) {
+		this.doctorId = doctorId;
+	}
+
+	public String getPatientId() {
+		return patientId;
+	}
+
+	public void setPatientId(String patientId) {
+		this.patientId = patientId;
+	}
+
 	public StringBuffer getBuff() {
 		return buff;
 	}
@@ -17,11 +37,12 @@ public class Consultation implements PatientRecord {
 	}
 
 	@Override
-	public void insertrecord( String patientId,String doctorId) {
+	public JSONObject insertrecord( String patientId,String doctorId) {
+		
 		// new connection
 		DatabaseConnection db = new DatabaseConnection();
 		// insert the buffer of consultation to the specified Patient id
-		db.insertConsultation(buff,patientId,doctorId);		
+		return(db.insertConsultation(buff,patientId,doctorId));		
 	}
 
 	@Override

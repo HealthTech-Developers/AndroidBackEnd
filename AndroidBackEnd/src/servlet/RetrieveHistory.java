@@ -7,6 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONObject;
+
+import model.Patient;
+import model.PatientHistory;
+import model.User;
+
 /**
  * Servlet implementation class RetrieveHistory
  */
@@ -26,8 +32,19 @@ public class RetrieveHistory extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		JSONObject json= new JSONObject();
+		String patientId = request.getParameter("patientId");
+		System.out.println(patientId);
+		PatientHistory history = new PatientHistory();
+		User user = new Patient();
+		user.setId(patientId);
+		json=history.retrieveConsultations(user);
+		
+		
+		
+		
+		response.getWriter().print(json);
 	}
 
 	/**

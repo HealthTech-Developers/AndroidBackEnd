@@ -1,16 +1,20 @@
 package model;
 
 
+import org.json.JSONObject;
+
 import database.DatabaseConnection;
 
 public class Patient extends User {
 	private PatientHistory aHistory;
+	private final String userType= "patient";
 
 	@Override
-	public boolean login() {
+	public JSONObject login() {
 		DatabaseConnection db = new DatabaseConnection();
 
-		return db.login(this);
+		 return db.login(this);
+		
 
 	}
 
@@ -23,12 +27,17 @@ public class Patient extends User {
 	}
 
 	/**
-	 * 
+	 * this new dab connection should be followed by the access grant. 
+	 * a token is generated allowing the Doctor to access the patient Id
+	 * @return 
 	 * 
 	 * */
-	public void giveAccess(){
+	public JSONObject giveAccess( String doctorId){
+		
+		DatabaseConnection db=new DatabaseConnection();
+		
 
-		return;
+		return db.grantAccess(this, doctorId);
 	}
 
 

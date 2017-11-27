@@ -7,24 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import model.Doctor;
-import model.Patient;
-import model.User;
 
 /**
- * Servlet implementation class Login
+ * Servlet implementation class GiveAccess
  */
-@WebServlet("/Login")
-public class Login extends HttpServlet {
+@WebServlet("/GiveAccess")
+public class GetAccess extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Login() {
+    public GetAccess() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,23 +28,18 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		User user = null;
-		String [] feedback =null;;
-		JSONObject json = new JSONObject();
-		String userName = request.getParameter("username");
-		String password = request.getParameter("password");
-		System.out.println(userName +"obtained of Pswword "+ password);
 
-			user = new Patient();
-	
-		user.setUsername(userName);
-		user.setPassword(password);
-		//the user logging in
-		json=user.login();
-		// TODO Auto-generated method stub
-		response.getWriter().print(json);
+    String doctorId = request.getParameter("doctorId");
+    System.out.println("doctor"+ doctorId);
+    Doctor doctor = new Doctor();
+    doctor.setId(doctorId);
+    
+		
+		
+		
+		
+		
+		response.getWriter().print(doctor.checkAccess());;
 	}
 
 	/**

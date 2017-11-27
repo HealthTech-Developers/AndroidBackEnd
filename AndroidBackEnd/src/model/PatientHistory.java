@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import database.DatabaseConnection;
+
 /**
  * This class will be used to retrieve all history when needed by ht epatient
  * or Doctor.
@@ -14,7 +16,10 @@ import org.json.JSONObject;
 public class PatientHistory {
 	
 	
-	PatientHistory(){}
+	public PatientHistory(){
+		
+		
+	}
 	PatientHistory(User user){}
 	
 	
@@ -29,7 +34,11 @@ public class PatientHistory {
 		
 	}
 	
-	public void retrieveConsultations(User user){
+	public JSONObject retrieveConsultations(User user){
+		
+		System.out.println("jjj"+user.getId()); 
+		DatabaseConnection db= new DatabaseConnection();
+		return db.retriveConsultations(user.getId());
 				
 		
 	}

@@ -37,6 +37,7 @@ public class Register extends HttpServlet {
 
 		response.setContentType("application/json");
 		System.out.println("connection ok");
+		String speciality="General";
 		String username = request.getParameter("username");
 		System.out.println(username);
 		String passKey =  request.getParameter("password");
@@ -47,6 +48,7 @@ public class Register extends HttpServlet {
 		System.out.println(userType);
 
 		String firstName = request.getParameter("name");
+		
 		System.out.println(firstName);
 
 		String nationID = request.getParameter("nationalId"); 
@@ -65,7 +67,7 @@ public class Register extends HttpServlet {
 			// setting information
 			user.setFirstName(firstName);
 			user.setNationalID(nationID);
-			System.out.println("registering...");
+			System.out.println("Patient registering...");
 
 			// to the User
 			user.setUsername(username);
@@ -84,7 +86,10 @@ public class Register extends HttpServlet {
 
 		// if the user is a Doctor
 		else{
+			speciality=request.getParameter("speciality");
 			user = new Doctor();
+			System.out.println("Doctor  registering...");
+
 
 			// setting information
 			user.setFirstName(firstName);
@@ -96,7 +101,11 @@ public class Register extends HttpServlet {
 
 			// setting a profession
 			Doctor doctor = (Doctor) user;
-			doctor.setProffession(username);
+			doctor.setProffession(speciality);
+			System.out.println(speciality);
+			System.out.println("Doctor  registering again...");
+
+
 
 			// registering
 			feedBack= doctor.register();

@@ -2,6 +2,8 @@ package model;
 
 import java.util.ArrayList;
 
+import org.json.JSONObject;
+
 import database.DatabaseConnection;
 
 public class Presrciption implements PatientRecord {
@@ -10,13 +12,13 @@ public class Presrciption implements PatientRecord {
 	private String id;
 	DatabaseConnection db;
 	@Override
-	public void insertrecord(String patientId, String doctorId) {
-		
+	public JSONObject insertrecord(String patientId, String doctorId) {
+		 db = new DatabaseConnection();
 		
 		if(null!=db)
 			db.insertPrescription( drugs,patientId, doctorId);
 		// TODO Auto-generated method stub
-		
+		return null;
 	}
 	@Override
 	public void retrieveRecord(String PatientId) {

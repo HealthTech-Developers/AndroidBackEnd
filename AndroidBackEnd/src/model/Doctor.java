@@ -1,21 +1,23 @@
 package model;
 
+import org.json.JSONObject;
+
 import database.DatabaseConnection;
 
 public class Doctor extends User {
-	
-	
+
+    private String doctorId;
 	private String proffession;
 
 	@Override
-	public boolean login() {		
-		
+	public JSONObject login() {		
+
 		DatabaseConnection db = new DatabaseConnection();
-		boolean feedback= db.login(this);
+		return db.login(this);
+
+
 		
-		
-		return feedback;
-		
+
 		// TODO Auto-generated method stub
 
 	}
@@ -26,15 +28,38 @@ public class Doctor extends User {
 
 	@Override
 	public boolean register() {
-		
-		return false;
+
+		DatabaseConnection db=new DatabaseConnection();
+
+
+
+		return db.register(this);
 		// TODO Auto-generated method stub
+
+	}
+
+	public void setProffession(String proffession) {
+		this.proffession=proffession;		
+	}
+	
+	
+	public void retrieveRecords(String patientId){
+		
+		
+		
+	}
+	public void addRecoords(StringBuffer recordBuff, String PatientId ){
+		
+		
+		
 		
 	}
 
-	public void setProffession(String proffesion) {
-		// TODO Auto-generated method stub
-		
+	public JSONObject checkAccess() {
+     DatabaseConnection db =  new DatabaseConnection();	
+     return db.checkAccess(this);
 	}
+	
+	
 
 }

@@ -1,5 +1,7 @@
 package model;
 
+import org.json.JSONObject;
+
 public abstract class User {
 	private String username;
 	private String password;
@@ -7,8 +9,17 @@ public abstract class User {
 	private String lastName;
 	private String nationalID;
 	private String userType;
+	private String id;
 
 	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public String getUserType() {
 		return userType;
 	}
@@ -65,7 +76,7 @@ public abstract class User {
 	 * an abstract method of logging
 	 * 
 	 * */
-	public abstract boolean login();
+	public abstract JSONObject login();
 	/*
 	 * an abstract method of registering
 	 * 
