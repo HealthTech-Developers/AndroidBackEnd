@@ -461,6 +461,45 @@ System.out.println("hhhh"+patientId);
 
 
 	}
+	
+	// Retrieve hospitals
+	
+	public ArrayList<String> retriveHospitalData(String district){
+		JSONObject json = new JSONObject();
+
+		ArrayList<String> hospital = new ArrayList<String> ();
+		String query= "SELECT `COL 1`, `COL 3`, `COL 4` FROM `health_facility` WHERE `COL 2`='Bugesera';"; 
+
+				try {
+					statement = myConnection.prepareStatement(query);
+
+
+					ResultSet myRs = statement.executeQuery();
+
+					while (myRs.next()) {
+
+						hospital.add(myRs.getString("COL 1"));
+						hospital.add(myRs.getString("COL 3"));
+						hospital.add(myRs.getString("COL 4"));
+						
+					}
+				} catch (SQLException e) {
+					System.out.println(e);
+				} finally {
+					try {
+						myConnection.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+
+					
+				}
+		return hospital;
+
+
+
+	}
+
 
 
 
